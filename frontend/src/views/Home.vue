@@ -1,18 +1,27 @@
 <template>
   <div class="home">
-    <img width="100" alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <Post v-for="(post, index) in $store.state.posts"
+          :key="index"
+          :post="post"
+          />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+  // @ is an alias to /src
+  import Post from "@/components/Post.vue";
 
-export default {
-  name: "home",
-  components: {
-    HelloWorld
-  }
-};
+  export default {
+    name: "home",
+    data() {
+      return {}
+    },
+    components: {
+      Post
+    }
+  };
 </script>
+
+<style scoped>
+
+</style>
