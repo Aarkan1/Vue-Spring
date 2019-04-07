@@ -1,27 +1,33 @@
 <template>
-  <div class="upload">
+  <v-container>
+
     <h1>Upload Post</h1>
     <form @submit="handleSubmit">
-      <div id="postTitle">
-        <h2>Title</h2>
-        <input type="text" v-model="title"/>
-      </div>
-      <div id="postInfo">
-        <h2>Info</h2>
-        <textarea type="text" v-model="info" rows="5"/>
-      </div>
+      <v-text-field
+              dark
+              label="Title"
+              v-model="title"
+              class="mt-4"
+      ></v-text-field>
+      <v-textarea
+              name="Details"
+              dark
+              label="Details"
+              v-model="info"
+      ></v-textarea>
       <div>
         <div id="postImage">
-          <h2>Choose image</h2>
           <FileUpload @uploadImage="handleImage($event)"/>
         </div>
-        <img v-if="imageSrc.length" width="40%" :src="imageSrc" alt="profile picture">
+        <img v-if="imageSrc.length" width="60%" :src="imageSrc" alt="profile picture">
       </div>
       <div id="submitBtnDiv">
-        <button id="submitBtn" type="submit"><i class="fas fa-plus-circle"></i></button>
+        <v-btn dark fab medium color="teal" id="submitBtn" type="submit">
+          <v-icon dark large>add</v-icon>
+        </v-btn>
       </div>
     </form>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -61,19 +67,11 @@
 </script>
 
 <style scoped>
-  #submitBtn {
-    font-size: 60px;
-    color: #42B983;
-    border: none;
-    background-color: transparent;
-  }
-
   #submitBtnDiv {
     position: fixed;
     display: block;
-    width: 100%;
+    right: 20px;
     bottom: 70px;
-
   }
 
   #postTitle, #postInfo, #postImage {
@@ -105,8 +103,8 @@
 
   img {
     position: absolute;
-    margin-top: -100px;
-    margin-left: 5px;
+    margin-top: -55px;
+    right: 20px;
     background-color: whitesmoke;
   }
 </style>

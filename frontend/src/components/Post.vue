@@ -30,7 +30,8 @@
     display: flex;
     text-decoration: none;
     color: whitesmoke;
-    width: 100vw;
+    width: 100%;
+    animation-duration: 200ms;
     border-bottom: solid 1px #7c7e70;
   }
 

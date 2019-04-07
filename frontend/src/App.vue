@@ -1,6 +1,13 @@
 <template>
   <div id="app">
-    <router-view/>
+    <transition
+            name="animate-route"
+            mode="out-in"
+            enter-active-class="animated fadeIn"
+            leave-active-class="animated fadeOut"
+    >
+      <router-view :key="$route.fullPath"/>
+    </transition>
     <Navigation/>
   </div>
 </template>

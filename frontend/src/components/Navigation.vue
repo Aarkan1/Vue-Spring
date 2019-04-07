@@ -1,8 +1,39 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link>
-    <router-link to="/upload">Upload</router-link>
-  </div>
+  <v-bottom-nav
+          :value="true"
+          dark
+          fixed
+          color="#2c3e50"
+  >
+    <v-btn
+            to="/"
+            color="teal"
+            flat
+            value="home"
+    >
+      <span>Home</span>
+      <v-icon medium>home</v-icon>
+    </v-btn>
+    <v-btn
+            to="/about"
+            color="teal"
+            flat
+            value="about"
+    >
+      <span>About</span>
+      <v-icon medium>account_box</v-icon>
+    </v-btn>
+
+    <v-btn
+            to="/upload"
+            color="teal"
+            flat
+            value="newPost"
+    >
+      <span>New post</span>
+      <v-icon medium>note_add</v-icon>
+    </v-btn>
+  </v-bottom-nav>
 </template>
 
 <script>
