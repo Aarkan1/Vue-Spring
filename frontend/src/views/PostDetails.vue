@@ -10,7 +10,9 @@
             fab
             dark
             color="teal"
-            medium>
+            fixed
+            medium
+            @click="updatePost">
       <v-icon dark>create</v-icon>
     </v-btn>
   </v-container>
@@ -19,7 +21,20 @@
 <script>
   export default {
     name: "PostDetails",
-    props: ['post']
+    props: ['post'],
+    methods: {
+      updatePost(event) {
+        let post = {
+          id: 6,
+          title: 'Updated title',
+          body: 'Updated description',
+          image: this.post.image
+        }
+        this.post = post
+
+        this.$store.commit('updatePost', post)
+      }
+    }
   }
 </script>
 
