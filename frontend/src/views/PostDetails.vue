@@ -1,11 +1,16 @@
 <template>
   <v-container>
     <figure>
-      <img width="100%" :src="post.img" alt="poster">
+      <img width="100%" :src="post.image" alt="poster">
     </figure>
     <h1>{{post.title}}</h1>
-    <p>{{post.text}}</p>
-    <v-btn fab dark color="teal" medium>
+    <p>{{post.body}}</p>
+    <v-btn
+            v-if="$store.state.loggedIn"
+            fab
+            dark
+            color="teal"
+            medium>
       <v-icon dark>create</v-icon>
     </v-btn>
   </v-container>
@@ -20,7 +25,7 @@
 
 <style scoped>
   button {
-    position: absolute;
+    position: fixed;
     bottom: 70px;
     right: 20px;
   }

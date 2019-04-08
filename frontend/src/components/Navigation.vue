@@ -25,6 +25,7 @@
     </v-btn>
 
     <v-btn
+            v-if="$store.state.loggedIn"
             to="/upload"
             color="teal"
             flat

@@ -19,6 +19,14 @@
           Links and stuff
         </h3>
       </v-flex>
+      <v-btn
+              v-if="$store.state.loggedIn"
+              fab
+              dark
+              color="teal"
+              medium>
+        <v-icon dark>create</v-icon>
+      </v-btn>
     </v-layout>
   </v-container>
 </template>
@@ -40,5 +48,10 @@
   img {
     background-color: whitesmoke;
     border-radius: 5px;
+  }
+  button {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
   }
 </style>
