@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import Logo from "./assets/logo.png"
 
 Vue.use(Vuex);
 
@@ -8,62 +7,13 @@ export default new Vuex.Store({
   state: {
     profilePicture: '',
     loggedIn: false,
-    posts: [],
-    posts2: [
-      {
-        img: Logo,
-        title: 'A title 1',
-        text: 'Bread text bread text bread text bread text bread text bread text'
-      }, {
-        img: Logo,
-        title: 'A title 2',
-        text: 'Bread text bread text bread text bread text bread text bread text'
-      }, {
-        img: Logo,
-        title: 'A title 3',
-        text: 'Bread text bread text bread text bread text bread text bread text'
-      }, {
-        img: Logo,
-        title: 'A title 2',
-        text: 'Bread text bread text bread text bread text bread text bread text'
-      }, {
-        img: Logo,
-        title: 'A title 3',
-        text: 'Bread text bread text bread text bread text bread text bread text'
-      }, {
-        img: Logo,
-        title: 'A title 2',
-        text: 'Bread text bread text bread text bread text bread text bread text'
-      }, {
-        img: Logo,
-        title: 'A title 3',
-        text: 'Bread text bread text bread text bread text bread text bread text'
-      }, {
-        img: Logo,
-        title: 'A title 2',
-        text: 'Bread text bread text bread text bread text bread text bread text'
-      }, {
-        img: Logo,
-        title: 'A title 3',
-        text: 'Bread text bread text bread text bread text bread text bread text'
-      }, {
-        img: Logo,
-        title: 'A title 2',
-        text: 'Bread text bread text bread text bread text bread text bread text'
-      }, {
-        img: Logo,
-        title: 'A title 3',
-        text: 'Bread text bread text bread text bread text bread text bread text'
-      },
-    ]
+    posts: []
   },
   mutations: {
     setProfilePicture(state, value) {
       state.profilePicture = value;
     },
     addPost(state, value) {
-      state.posts.push(value)
-
       fetch('/post', {
         method: 'POST',
         mode: 'cors',
@@ -73,6 +23,12 @@ export default new Vuex.Store({
         },
         body: JSON.stringify(value)
       })
+          .then(res => {
+            return res.json()
+          })
+          .then(res => {
+            state.posts.push(res)
+          })
           .catch(e => console.log(e))
     },
     updatePost(state, value) {
@@ -91,6 +47,7 @@ export default new Vuex.Store({
         },
         body: JSON.stringify(value)
       })
+          .catch(e => console.log(e))
 
       console.log('Updating post: ', value.id)
 
@@ -111,6 +68,7 @@ export default new Vuex.Store({
         },
         body: JSON.stringify(value)
       })
+          .catch(e => console.log(e))
 
       console.log('Deleting post: ', value.id)
 

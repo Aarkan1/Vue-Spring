@@ -23,16 +23,11 @@
     name: "PostDetails",
     props: ['post'],
     methods: {
-      updatePost(event) {
-        let post = {
-          id: 6,
-          title: 'Updated title',
-          body: 'Updated description',
-          image: this.post.image
-        }
-        this.post = post
-
-        this.$store.commit('updatePost', post)
+      updatePost() {
+        this.$router.push({
+          name: 'upload',
+          params: {post: this.post}
+        })
       }
     }
   }

@@ -18,6 +18,10 @@
   export default {
     components: {
       Navigation
+    },
+    created() {
+
+      this.$store.dispatch('getPosts');
     }
   }
 </script>

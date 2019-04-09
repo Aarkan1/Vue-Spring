@@ -17,8 +17,8 @@ public class PostService {
     return postRepo.findAll();
   }
 
-  public void insertPost(Post post){
-    postRepo.save(post);
+  public Post insertPost(Post post){
+    return postRepo.save(post);
   }
 
   public void deletePost(Post post){

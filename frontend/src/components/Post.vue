@@ -2,10 +2,10 @@
   <div id="post" @click="seePostDetails">
     <div id="post-text">
       <h2>{{ post.title }}</h2>
-      <p>{{ post.text }}</p>
+      <p>{{ post.body }}</p>
     </div>
     <figure>
-      <img :src="post.img" alt="poster">
+      <img :src="post.image" alt="poster">
     </figure>
   </div>
 </template>

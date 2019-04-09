@@ -1,7 +1,7 @@
 <template>
   <v-container>
 
-    <h1>Upload Post</h1>
+    <h1>{{ post ? 'Edit post' : 'Upload Post' }}</h1>
     <form @submit="handleSubmit">
       <v-text-field
               dark
@@ -23,10 +23,21 @@
       </div>
       <div id="submitBtnDiv">
         <v-btn dark fab medium color="teal" id="submitBtn" type="submit">
-          <v-icon dark large>add</v-icon>
+          <v-icon dark large>{{ post ? 'create' : 'add' }}</v-icon>
         </v-btn>
       </div>
     </form>
+      <v-btn
+              v-if="post"
+              dark
+              fab
+              absolute
+              small
+              color="red"
+              class="remove-btn darken-2"
+              @click="deletePost">
+        <v-icon dark large>remove</v-icon>
+      </v-btn>
   </v-container>
 </template>
 
@@ -37,6 +48,7 @@
     components: {
       FileUpload
     },
+    props: ['post'],
     data() {
       return {
         imageSrc: '',
@@ -44,23 +56,54 @@
         info: ''
       }
     },
+    mounted() {
+      if (this.post) {
+        this.imageSrc = this.post.image
+        this.title = this.post.title
+        this.info = this.post.body
+      }
+    },
     methods: {
       handleSubmit(e) {
         e.preventDefault()
+
+        if (this.post) {
+          this.editPost()
+          return;
+        }
         // if no input, don't submit
         if (!this.imageSrc.length || !this.title.length || !this.info.length) {
           return;
         }
-        console.log('posted')
-
         this.$store.commit('addPost', {
-          img: this.imageSrc,
           title: this.title,
-          text: this.info
+          body: this.info,
+          image: this.imageSrc
         })
+        this.returnHome()
+      },
+      editPost() {
+        console.log(this.post.id)
+
+        let editedPost = {
+          id: this.post.id,
+          title: this.title,
+          body: this.info,
+          image: this.imageSrc
+        }
+
+        this.$store.commit('updatePost', editedPost)
+        this.returnHome()
+      },
+      deletePost() {
+        this.$store.commit('deletePost', this.post)
+        this.returnHome()
       },
       handleImage(imageData) {
         this.imageSrc = imageData
+      },
+      returnHome(){
+        this.$router.push({name: 'home'})
       }
     }
   }
@@ -72,6 +115,10 @@
     display: block;
     right: 20px;
     bottom: 70px;
+  }
+
+  .remove-btn {
+    bottom: 80px;
   }
 
   #postTitle, #postInfo, #postImage {
