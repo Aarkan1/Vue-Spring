@@ -20,7 +20,6 @@
       Navigation
     },
     created() {
-
       this.$store.dispatch('getPosts');
     }
   }

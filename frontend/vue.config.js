@@ -1,19 +1,13 @@
 module.exports = {
   devServer: {
     proxy: {
-      "/posts": {
+      "/api/posts": {
         target: "http://localhost:8080",
         ws: true,
         changeOrigin: true,
         secure: false
       },
-      "/post": {
-        target: "http://localhost:8080",
-        ws: true,
-        changeOrigin: true,
-        secure: false
-      },
-      "/post/:id": {
+      "/api/posts/:id": {
         target: "http://localhost:8080",
         ws: true,
         changeOrigin: true,
@@ -23,10 +17,4 @@ module.exports = {
   },
   baseUrl: "",
   outputDir: "../src/main/resources/static"
-  // publicPath: '',
-  // assetsDir: undefined,
-  // runtimeCompiler: undefined,
-  // productionSourceMap: undefined,
-  // parallel: undefined,
-  // css: undefined
 };

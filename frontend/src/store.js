@@ -14,7 +14,7 @@ export default new Vuex.Store({
       state.profilePicture = value;
     },
     addPost(state, value) {
-      fetch('/post', {
+      fetch('/api/posts', {
         method: 'POST',
         mode: 'cors',
         credentials: 'same-origin',
@@ -38,7 +38,7 @@ export default new Vuex.Store({
           state.posts[index] = value
         }
 
-      fetch('/post/' + value.id, {
+      fetch('/api/posts/' + value.id, {
         method: 'PUT',
         mode: 'cors',
         credentials: 'same-origin',
@@ -59,7 +59,7 @@ export default new Vuex.Store({
           state.posts.splice(index, 1);
         }
 
-      fetch('/post/' + value.id, {
+      fetch('/api/posts/' + value.id, {
         method: 'DELETE',
         mode: 'cors',
         credentials: 'same-origin',
@@ -87,7 +87,7 @@ export default new Vuex.Store({
   actions: {
     getPosts(context) {
       console.log('Fetching posts')
-      fetch('/posts')
+      fetch('/api/posts')
           .then((res) => {
             return res.json();
           })
