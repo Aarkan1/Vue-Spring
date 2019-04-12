@@ -3,7 +3,7 @@ package web.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import web.entities.Post;
-import web.repositories.PostRepo;
+import web.services.PostService;
 
 import java.util.Date;
 
@@ -12,25 +12,25 @@ import java.util.Date;
 public class PostController {
 
   @Autowired
-  private PostRepo postRepo;
+  private PostService postService;
 
   @GetMapping
   public Iterable<Post> posts() {
-    return postRepo.findAll();
+    return postService.getAllPosts();
   }
 
   @PostMapping
   public Post publishPost(@RequestBody Post post) {
     if (post.getDateCreated() == null)
       post.setDateCreated(new Date());
-    return postRepo.save(post);
+    return postService.insertPost(post);
   }
 
   @PutMapping("/{id}")
   public void updatePost(
           @PathVariable Long id,
           @RequestBody Post post) {
-    postRepo.save(post);
+    postService.insertPost(post);
 
   }
 
@@ -38,7 +38,7 @@ public class PostController {
   public void deletePost(
           @PathVariable Long id,
           @RequestBody Post post) {
-    postRepo.delete(post);
+    postService.deletePost(post);
   }
 
 }

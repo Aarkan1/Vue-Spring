@@ -2,8 +2,9 @@ package web.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import web.entities.Post;
+import web.entities.User;
 
 @Repository
-public interface PostRepo extends JpaRepository<Post, Long> {
+public interface UserRepo extends JpaRepository<User, Long> {
+  public User findByUsername(String username);
 }

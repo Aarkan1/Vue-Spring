@@ -82,6 +82,28 @@ export default new Vuex.Store({
     getPosts(state, value) {
       state.posts = value
       console.log(state.posts)
+    },
+    getUser(state, user) {
+      console.log('Fetching user')
+      fetch('/api/users', {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'same-origin',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+      })
+          .then((res) => {
+            return res.json();
+          })
+          .then((res) => {
+            if (res !== null) {
+              state.loggedIn = true
+            }
+          })
+          .catch(e => console.log(e))
+
     }
   },
   actions: {
@@ -95,6 +117,6 @@ export default new Vuex.Store({
             context.commit('getPosts', res)
           })
           .catch(e => console.log(e))
-    }
+    },
   }
 })

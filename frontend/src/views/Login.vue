@@ -40,7 +40,13 @@
       logIn(e) {
         e.preventDefault()
         this.$router.push({name: 'home'})
-        this.$store.commit('logIn', true)
+
+        let user = {
+          username: this.username,
+          password: this.password
+        }
+
+        this.$store.commit('getUser', user)
       }
     }
   }

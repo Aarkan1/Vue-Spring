@@ -13,9 +13,9 @@ public class PostService {
   @Autowired
   private PostRepo postRepo;
 
-//  public List<Post> getAllPosts(){
-//    return postRepo.findAll();
-//  }
+  public List<Post> getAllPosts(){
+    return postRepo.findAll();
+  }
 
   public Post insertPost(Post post){
     return postRepo.save(post);
